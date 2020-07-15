@@ -7,6 +7,10 @@
   width: 300px;
 }
 
+.card-body {
+  padding: 1rem;
+}
+
 .navbar {
   background: linear-gradient(90deg,#009bfe,#02b8ff);
 }
