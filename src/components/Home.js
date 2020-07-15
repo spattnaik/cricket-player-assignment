@@ -1,5 +1,10 @@
 import React from 'react';
 
-const Home = () => <div>Home Page</div>
+const Home = () => (
+    <img 
+        className="homeLogo"
+        src="https://logos-download.com/wp-content/uploads/2016/10/BCCI_logo.png"
+    />
+)
 
 export default Home;
