@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Home = () => (
-    <img 
+    <img
         className="homeLogo"
-        src="https://logos-download.com/wp-content/uploads/2016/10/BCCI_logo.png"
+        src="https://upload.wikimedia.org/wikipedia/en/8/8d/Cricket_India_Crest.svg"
+        alt="Indian team logo"
     />
 )
 

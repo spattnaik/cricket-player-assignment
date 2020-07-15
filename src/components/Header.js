@@ -1,19 +1,20 @@
 import React from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
+import { withRouter } from 'react-router-dom';
 
 const Header = (props) => {
     return (
         <Navbar fixed="top">
             <Navbar.Brand href="#home">
                 <img
-                    src="https://logos-download.com/wp-content/uploads/2016/10/BCCI_logo.png"
+                    src="https://upload.wikimedia.org/wikipedia/en/8/8d/Cricket_India_Crest.svg"
                     width="50"
                     height="50"
                     className="d-inline-block align-top"
                     alt="Indian Team Logo"
                 />
-            </Navbar.Brand>BCCI
+            </Navbar.Brand>Indian Cricket Team
             <Navbar.Collapse className="justify-content-end">
                 <Nav>
                     <LinkContainer to="/">
@@ -23,15 +24,24 @@ const Header = (props) => {
                         <Nav.Link href="#">Cricketer List</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="#">
-                        <Nav.Link href="#" onClick={props.onAddPress}>Add Cricketer</Nav.Link>
+                        <Nav.Link
+                            href="#"
+                            onClick={(event) => {
+                                props.location.pathname === "/cricketers"
+                                    ? props.onAddPress(event)
+                                    : window.alert('This facility is only available while browsing cricketrs list')
+                            }}
+                        >
+                            Add Cricketer
+                        </Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/schedules">
                         <Nav.Link href="#">Schedule</Nav.Link>
-                    </LinkContainer>                
+                    </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     )
 }
 
-export default Header;
+export default withRouter(Header);

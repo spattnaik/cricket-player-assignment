@@ -18,9 +18,9 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
         getItems();
     }, [getItems])
 
-    useEffect(()=> {
-        if(addPressed) addPlayer();
-    },[addPressed])
+    useEffect(() => {
+        if (addPressed) addPlayer();
+    }, [addPressed])
 
     const hideModal = () => {
         setIsOpen(false);
@@ -68,7 +68,7 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
                         <Card.Title align="left">Position</Card.Title>
                     </Col>
                     <Col sm={3}>
-                    <Card.Title align="left">Action</Card.Title>
+                        <Card.Title align="left">Action</Card.Title>
                     </Col>
                 </Row>
             </Card.Body>
@@ -95,12 +95,16 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
             </Card.Body>
         </Card>
     );
-    
+
     return (
         <>
             <Container>
                 {renderHeader()}
-                {list.length > 0 ? renderList(list) : <div>not available</div>}
+                {
+                    list.length > 0
+                        ? renderList(list)
+                        : <div style={{ paddingTop: '1rem' }}>No Cricketers data available. Click on the "Add Cricketer" link on the top bar to add new cricker data.</div>
+                }
             </Container>
             <Modal show={isOpen} onHide={hideModal} size="lg">
                 <Modal.Header>Add Player</Modal.Header>
