@@ -58,7 +58,7 @@ const updateItem = async (req, resp, next) => {
     try {
         const response = await PlayerItem.findOneAndUpdate({
             _id: id
-        }, updatedPlayer, { new: false });
+        }, updatedPlayer, { new: true });
 
         return resp.status(201).send({
             success: true,
