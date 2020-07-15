@@ -27,11 +27,7 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
         setAddPressed(false);
     };
 
-    const renderList = (items) => (
-        <Container>
-            {items.map(item => renderItem(item))}
-        </Container>
-    )
+    const renderList = (items) => items.map(item => renderItem(item))
 
     const formSubmit = (data, event) => {
         event.preventDefault();
@@ -58,15 +54,40 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
         }
     }
 
-    const renderItem = (item) => (
-        <Card border="secondary" style={{ width: '30rem', marginTop: '0.5rem' }} key={item._id}>
+    const renderHeader = () => (
+        <Card border="secondary" bg="secondary" style={{ width: '100%', marginTop: '0.5rem' }}>
             <Card.Body>
-                <Card.Title align="left">{item.playerNo} - {item.playerName}</Card.Title>
-
                 <Row>
-                    <Col sm={8}>
-                        <Card.Text align="left">Position: {item.playerPosition}</Card.Text></Col>
-                    <Col sm={4}>
+                    <Col sm={1}>
+                        <Card.Title align="left">#</Card.Title>
+                    </Col>
+                    <Col sm={5}>
+                        <Card.Title align="left">Player Name</Card.Title>
+                    </Col>
+                    <Col sm={3}>
+                        <Card.Title align="left">Position</Card.Title>
+                    </Col>
+                    <Col sm={3}>
+                    <Card.Title align="left">Action</Card.Title>
+                    </Col>
+                </Row>
+            </Card.Body>
+        </Card>
+    )
+    const renderItem = (item) => (
+        <Card border="secondary" style={{ width: '100%', marginTop: '0.5rem' }} key={item._id}>
+            <Card.Body>
+                <Row>
+                    <Col sm={1}>
+                        <Card.Title align="left">{item.playerNo}</Card.Title>
+                    </Col>
+                    <Col sm={5}>
+                        <Card.Title align="left">{item.playerName}</Card.Title>
+                    </Col>
+                    <Col sm={3}>
+                        <Card.Text align="left">{item.playerPosition}</Card.Text>
+                    </Col>
+                    <Col sm={3} align="left">
                         <Button variant="outline-primary" size="sm" style={{ marginRight: '0.5rem' }} onClick={editPlayer.bind(null, item)}>Edit</Button>
                         <Button variant="outline-danger" size="sm" onClick={deletePlayer.bind(null, item._id, item.playerName)}>Delete</Button>
                     </Col>
@@ -74,14 +95,19 @@ const PlayerList = ({ addPressed, setAddPressed, list, getItems, addItem, delete
             </Card.Body>
         </Card>
     );
-    return <div>{
-        list.length > 0 ? renderList(list) : <div>not available</div>
-    }
-        <Modal show={isOpen} onHide={hideModal} size="lg">
-            <Modal.Header>Add Player</Modal.Header>
-            <Modal.Body><PlayerForm submitCallback={formSubmit} player={currentPlayer} /></Modal.Body>
-        </Modal>
-    </div>
+    
+    return (
+        <>
+            <Container>
+                {renderHeader()}
+                {list.length > 0 ? renderList(list) : <div>not available</div>}
+            </Container>
+            <Modal show={isOpen} onHide={hideModal} size="lg">
+                <Modal.Header>Add Player</Modal.Header>
+                <Modal.Body><PlayerForm submitCallback={formSubmit} player={currentPlayer} /></Modal.Body>
+            </Modal>
+        </>
+    )
 }
 
 const mapStateToProps = state => {

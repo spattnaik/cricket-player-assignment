@@ -17,16 +17,6 @@ const PlayerForm = ({ player, submitCallback }) => {
 
     return (
         <Form onSubmit={submitCallback.bind(null, { playerName, playerNo, playerPosition })}>
-            <Form.Group controlId="formPlayerName">
-                <Form.Label>Player Name</Form.Label>
-                <Form.Control
-                    required
-                    value={playerName}
-                    placeholder="Enter Player Name"
-                    name="playerName"
-                    onChange={(event) => setPlayerName(event.target.value)}
-                />
-            </Form.Group>
             <Form.Group controlId="formPlayerNo">
                 <Form.Label>Player No</Form.Label>
                 <Form.Control
@@ -35,6 +25,16 @@ const PlayerForm = ({ player, submitCallback }) => {
                     placeholder="Enter Player Number"
                     name="playerNo"
                     onChange={(event) => setPlayerNo(event.target.value)}
+                />
+            </Form.Group>
+            <Form.Group controlId="formPlayerName">
+                <Form.Label>Player Name</Form.Label>
+                <Form.Control
+                    required
+                    value={playerName}
+                    placeholder="Enter Player Name"
+                    name="playerName"
+                    onChange={(event) => setPlayerName(event.target.value)}
                 />
             </Form.Group>
             <Form.Group controlId="formPlayerPosition">

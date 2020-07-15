@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = (props) => {
     return (
@@ -12,11 +13,23 @@ const Header = (props) => {
                     className="d-inline-block align-top"
                     alt="Indian Team Logo"
                 />
-            </Navbar.Brand>
+            </Navbar.Brand>BCCI
             <Navbar.Collapse className="justify-content-end">
-                <Nav.Link href="#" onClick={props.onAddPress}>Add Player</Nav.Link>
+                <Nav>
+                    <LinkContainer to="/">
+                        <Nav.Link>Home</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/cricketers">
+                        <Nav.Link href="#">Cricketer List</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="#">
+                        <Nav.Link href="#" onClick={props.onAddPress}>Add Cricketer</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/schedules">
+                        <Nav.Link href="#">Schedule</Nav.Link>
+                    </LinkContainer>                
+                </Nav>
             </Navbar.Collapse>
-
         </Navbar>
     )
 }

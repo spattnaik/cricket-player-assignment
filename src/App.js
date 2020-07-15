@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-import PlayerList from './components/Player-List';
 import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import {Switch, Route} from 'react-router-dom';
+import PlayerList from './components/Player-List';
+import Home from './components/Home';
+import Schedules from './components/Schedules';
 
 function App() {
 const [addPressed, setAddPressed] = useState(false);
@@ -11,7 +14,16 @@ const addPlayerCallback = () => {setAddPressed(true)};
   return (
     <div className="App">
       <Header onAddPress={addPlayerCallback} />
-      <PlayerList addPressed={addPressed} setAddPressed={setAddPressed} />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/cricketers' render={function () {
+            return <PlayerList addPressed={addPressed} setAddPressed={setAddPressed} />
+        }} />
+        <Route exact path='/schedules' component={Schedules} />
+        <Route render={function () {
+            return <p>Not found</p>
+        }} />
+      </Switch>
     </div>
   );
 }
